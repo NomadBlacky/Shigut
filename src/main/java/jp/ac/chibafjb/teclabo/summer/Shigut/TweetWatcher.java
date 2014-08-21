@@ -1,5 +1,12 @@
 package jp.ac.chibafjb.teclabo.summer.Shigut;
 
+/**
+ * ハッシュタグ[#shigut]を監視して、発言内容をString型として格納するクラス
+ * @author Shigure242
+ *
+ */
+import java.sql.SQLException;
+
 import twitter4j.FilterQuery;
 import twitter4j.StallWarning;
 import twitter4j.Status;
@@ -7,10 +14,24 @@ import twitter4j.StatusDeletionNotice;
 import twitter4j.StatusListener;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
+import twitter4j.User;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TweetWatcher implements StatusListener {
+	public TweetWatcher() {
+		try {
+			db = new DataBase("jdbc:sqlite:db/test.db");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+	}
+
+	DataBase db = null;
+
 	public void Watcher() {
 
 		// 認証キーを設定
@@ -64,10 +85,38 @@ public class TweetWatcher implements StatusListener {
 
 	}
 
+	/**
+	 *あとで記入
+	 */
 	@Override
 	public void onStatus(Status status) {
 		String txtdata = status.getText();
-		System.out.println(txtdata);
+		User user = status.getUser();
+		String userId = user.getName();
+		// フレーズへ引数を渡す
+		Phrase phraseData = KeyPhraseApi.getKeyPhrase(userId, txtdata);
+		pushDb(phraseData);
+
+	}
+
+	/**
+	 * あとで記入
+	 * @param phraseData フレーズデータ
+	 */
+	public void pushDb(Phrase phraseData) {
+
+		String phrase = phraseData.getPhrase();
+		String userName = phraseData.getUser();
+		int score = phraseData.getScore();
+
+		try {
+			db.insertPhrase(userName, phrase, score);
+			db.printPhrases();
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
