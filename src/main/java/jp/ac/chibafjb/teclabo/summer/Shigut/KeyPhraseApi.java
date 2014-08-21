@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 public class KeyPhraseApi {
 	//appid/url
@@ -21,10 +22,14 @@ public class KeyPhraseApi {
 		//return
 		Phrase result=null;
 		try {
-			URL url = new URL(base_url+"?appid="+appid+"&sentence="+sentence.replaceAll("#|\"",""));
+			sentence = URLEncoder.encode(sentence.replaceAll("#|\"",""), "UTF-8");
+			String urlString = base_url+"?appid="+appid+"&sentence="+sentence;
+			URL url = new URL(urlString);
+			System.out.println(url);
 			//connection
 			HttpURLConnection httpCon = (HttpURLConnection)url.openConnection();
-			httpCon.setRequestMethod("GET");
+//			httpCon.setRequestMethod("GET");
+			httpCon.setRequestMethod("POST");
 			httpCon.setInstanceFollowRedirects(false);
 			httpCon.connect();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(httpCon.getInputStream()));
