@@ -22,7 +22,11 @@ public class KeyPhraseApi {
 		//return
 		Phrase result=null;
 		try {
-			sentence = URLEncoder.encode(sentence.replaceAll("(#.* )|(#.*　)|\"",""), "UTF-8");
+			sentence = sentence.replaceAll("#shigut","");
+			sentence = sentence.trim();
+			System.out.println(sentence);
+			sentence = URLEncoder.encode(sentence, "UTF-8");
+			System.out.println(sentence);
 			String urlString = base_url+"?appid="+appid+"&sentence="+sentence;
 			URL url = new URL(urlString);
 			System.out.println(url);
@@ -52,6 +56,7 @@ public class KeyPhraseApi {
 				reader.readLine();
 			}
 			//result
+			System.out.println(topKeyPhrase);
 			result=new Phrase(userId,topKeyPhrase,topScore);
 			//close,disconnect
 			reader.close();

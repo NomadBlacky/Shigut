@@ -9,9 +9,12 @@ import twitter4j.User;
 import twitter4j.conf.Configuration;
 
 public class Listener extends TweetWatcher implements StatusListener {
-public Listener(Configuration con) {
-	bot = new TwiBot(conf);
-}
+
+	TwiBot bot;
+
+	public Listener(Configuration conf) {
+		bot = new TwiBot(conf);
+	}
 
 
 	@Override
@@ -50,7 +53,7 @@ public Listener(Configuration con) {
 		String text = phraseData.getPhrase();
 		 pushDb(phraseData);
 		try {
-			bot.tweet("つぶやき");
+			bot.tweetLearn(phraseData.getPhrase());
 		} catch (TwitterException e1) {
 			// TODO 自動生成された catch ブロック
 			e1.printStackTrace();

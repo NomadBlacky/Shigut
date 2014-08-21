@@ -43,7 +43,6 @@ public class TweetWatcher {
 
 		// 初期設定
 		TwitterStream stream = new TwitterStreamFactory(conf).getInstance();
-		bot = new TwiBot(conf);
 		stream.addListener(new Listener(conf));
 
 		// フィルタ
