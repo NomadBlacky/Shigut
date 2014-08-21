@@ -7,12 +7,22 @@ package jp.ac.chibafjb.teclabo.summer.Shigut;
  */
 public class Phrase {
 
+	private String user;
 	private String phrase;
 	private int score;
 
-	public Phrase(String phrase, int score) {
+	public Phrase(String user, String phrase, int score) {
+		this.user = user;
 		this.phrase = phrase;
 		this.score = score;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
 	}
 
 	public String getPhrase() {
