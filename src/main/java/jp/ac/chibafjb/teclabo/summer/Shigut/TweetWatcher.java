@@ -14,7 +14,9 @@ import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TweetWatcher {
+
 	public TweetWatcher() {
+
 		try {
 			db = new DataBase("jdbc:sqlite:db/test.db");
 		} catch (ClassNotFoundException e) {
@@ -25,7 +27,9 @@ public class TweetWatcher {
 		}
 	}
 
+	public String x = "aaaa";
 	DataBase db = null;
+	Configuration conf = null;
 
 	public void Watcher() {
 
@@ -62,8 +66,11 @@ public class TweetWatcher {
 			db.insertPhrase(phraseData);
 			db.printPhrases();
 		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
+	}
+
+	public Configuration getConf() {
+		return conf;
 	}
 }
