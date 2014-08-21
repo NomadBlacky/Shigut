@@ -50,10 +50,10 @@ public class Listener extends TweetWatcher implements StatusListener {
 
 		// フレーズへ引数を渡す
 		Phrase phraseData = KeyPhraseApi.getKeyPhrase(userId, txtdata);
+		System.out.println(phraseData.getPhrase());
 
 		 pushDb(phraseData);
 		try {
-			//bot.tweetLearn(phraseData.getPhrase());
 			bot.tweetRandom(phraseData.getPhrase());
 		} catch (TwitterException e1) {
 			// TODO 自動生成された catch ブロック

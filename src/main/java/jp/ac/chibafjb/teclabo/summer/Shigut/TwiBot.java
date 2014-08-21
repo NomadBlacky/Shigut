@@ -9,15 +9,9 @@ import twitter4j.conf.Configuration;
 
 public class TwiBot {
 
-	Random random;
-
-	public TwiBot() {
-		random = new Random();
-	}
-
 	Twitter twitter = null;
 
-	String[] texts = {
+	static String[] texts = {
 			"%sに行きたいなぁ(*^_^*)",
 			"%sが食べたいなぁ(*´▽｀*)",
 			"%s買いたいなぁ(>_<)",
@@ -46,7 +40,10 @@ public class TwiBot {
 
 	public void tweetRandom(String word) throws TwitterException {
 
-		String tweetText = String.format(texts[random.nextInt(texts.length)], word);
+		int i = new Random().nextInt(texts.length);
+		System.out.println(texts[i]);
+		String tweetText = String.format(texts[i], word);
+		System.out.println("[TwiBot]" + tweetText);
 		twitter.updateStatus(tweetText);
 	}
 }
