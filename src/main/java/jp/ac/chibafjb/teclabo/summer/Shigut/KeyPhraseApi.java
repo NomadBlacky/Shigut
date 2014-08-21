@@ -16,12 +16,12 @@ public class KeyPhraseApi {
 	//appid/url
 	private static String appid		="dj0zaiZpPUxOYkJjMDBKaURwZCZzPWNvbnN1bWVyc2VjcmV0Jng9NzA-";
 	private static String base_url	="http://jlp.yahooapis.jp/KeyphraseService/V1/extract";
-	
+
 	public static Phrase getKeyPhrase(String userId,String sentence){
 		//return
 		Phrase result=null;
 		try {
-			URL url = new URL(base_url+"?appid="+appid+"&sentence="+sentence.split("#")[0]);
+			URL url = new URL(base_url+"?appid="+appid+"&sentence="+sentence.replaceAll("#|\"",""));
 			//connection
 			HttpURLConnection httpCon = (HttpURLConnection)url.openConnection();
 			httpCon.setRequestMethod("GET");
