@@ -62,7 +62,7 @@ public class TweetWatcher {
 
 		try {
 			db.insertPhrase(phraseData);
-			db.printPhrases();
+			//db.printPhrases();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
