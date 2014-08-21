@@ -8,6 +8,7 @@ package jp.ac.chibafjb.teclabo.summer.Shigut;
 import java.sql.SQLException;
 
 import twitter4j.FilterQuery;
+import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
@@ -41,7 +42,7 @@ public class TweetWatcher {
 		conf = builder.build();
 
 		// 初期設定
-		TwitterStreamstream = new TwitterStreamFactory(conf).getInstance();
+		TwitterStream stream = new TwitterStreamFactory(conf).getInstance();
 		bot = new TwiBot(conf);
 		stream.addListener(new Listener(conf));
 
