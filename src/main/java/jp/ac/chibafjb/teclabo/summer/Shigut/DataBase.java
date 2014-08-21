@@ -103,6 +103,7 @@ public class DataBase {
 	/**
 	 * フレーズ情報をすべて削除
 	 * @throws SQLException
+	 *
 	 */
 	public void deletePhrases() throws SQLException {
 

@@ -46,12 +46,12 @@ public class TweetWatcher implements StatusListener {
 		TwitterStream stream = new TwitterStreamFactory(conf).getInstance();
 		System.out.println("!!!!!");
 
-		stream.addListener(new TweetWatcher());
+		stream.addListener(this);
 
 		// フィルタ
 		FilterQuery filterQuery = new FilterQuery();
 
-		filterQuery.track(new String[] { "#ff14" });
+		filterQuery.track(new String[] { "#shigut" });
 		stream.filter(filterQuery);
 	}
 
@@ -92,7 +92,7 @@ public class TweetWatcher implements StatusListener {
 	public void onStatus(Status status) {
 		String txtdata = status.getText();
 		User user = status.getUser();
-		String userId = user.getName();
+		String userId = user.getScreenName();
 		// フレーズへ引数を渡す
 		Phrase phraseData = KeyPhraseApi.getKeyPhrase(userId, txtdata);
 		pushDb(phraseData);
