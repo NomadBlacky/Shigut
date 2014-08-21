@@ -51,7 +51,7 @@ public class TweetWatcher implements StatusListener {
 		// フィルタ
 		FilterQuery filterQuery = new FilterQuery();
 
-		filterQuery.track(new String[] { "#shigut" });
+		filterQuery.track(new String[] { "#ff14" });
 		stream.filter(filterQuery);
 	}
 
@@ -105,12 +105,8 @@ public class TweetWatcher implements StatusListener {
 	 */
 	public void pushDb(Phrase phraseData) {
 
-		String phrase = phraseData.getPhrase();
-		String userName = phraseData.getUser();
-		int score = phraseData.getScore();
-
 		try {
-			db.insertPhrase(userName, phrase, score);
+			db.insertPhrase(phraseData);
 			db.printPhrases();
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
