@@ -22,7 +22,7 @@ public class KeyPhraseApi {
 		//return
 		Phrase result=null;
 		try {
-			sentence = URLEncoder.encode(sentence.replaceAll("#.* |#.*　|#|\"",""), "UTF-8");
+			sentence = URLEncoder.encode(sentence.replaceAll("(#.* )|(#.*　)|\"",""), "UTF-8");
 			String urlString = base_url+"?appid="+appid+"&sentence="+sentence;
 			URL url = new URL(urlString);
 			System.out.println(url);
