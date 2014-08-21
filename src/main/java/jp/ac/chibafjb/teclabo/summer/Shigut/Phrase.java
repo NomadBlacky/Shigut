@@ -41,4 +41,45 @@ public class Phrase {
 		this.score = score;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((phrase == null) ? 0 : phrase.hashCode());
+		result = prime * result + score;
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Phrase other = (Phrase) obj;
+		if (phrase == null) {
+			if (other.phrase != null)
+				return false;
+		} else if (!phrase.equals(other.phrase))
+			return false;
+		if (score != other.score)
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Phrase [user=" + user + ", phrase=" + phrase + ", score="
+				+ score + "]";
+	}
+
+
 }
