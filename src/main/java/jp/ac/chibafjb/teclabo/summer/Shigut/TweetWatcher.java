@@ -8,7 +8,6 @@ package jp.ac.chibafjb.teclabo.summer.Shigut;
 import java.sql.SQLException;
 
 import twitter4j.FilterQuery;
-import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
@@ -27,9 +26,9 @@ public class TweetWatcher {
 		}
 	}
 
-	public String x = "aaaa";
 	DataBase db = null;
 	Configuration conf = null;
+	TwiBot bot = null;
 
 	public void Watcher() {
 
@@ -39,13 +38,12 @@ public class TweetWatcher {
 		builder.setOAuthConsumerSecret("sqSnRgTHrust2ApC34my4xCaoXKFsXnwlA9LDaAipLCQjROQYW");
 		builder.setOAuthAccessToken("2751215797-OurAxPurG3DD50LoiNj9gXHfsAu0RB3l1jHyNCq");
 		builder.setOAuthAccessTokenSecret("A0QdIpDP79N52OthL6pMbJW52zfdkdW1bv1gTRDd9FX2U");
-		Configuration conf = builder.build();
+		conf = builder.build();
 
 		// 初期設定
-		TwitterStream stream = new TwitterStreamFactory(conf).getInstance();
-		System.out.println("!!!!!");
-
-		stream.addListener(new Listener());
+		TwitterStreamstream = new TwitterStreamFactory(conf).getInstance();
+		bot = new TwiBot(conf);
+		stream.addListener(new Listener(conf));
 
 		// フィルタ
 		FilterQuery filterQuery = new FilterQuery();
