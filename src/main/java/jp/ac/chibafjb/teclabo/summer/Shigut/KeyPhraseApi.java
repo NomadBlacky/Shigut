@@ -21,7 +21,7 @@ public class KeyPhraseApi {
 		//return
 		Phrase result=null;
 		try {
-			URL url = new URL(base_url+"?appid="+appid+"&sentence="+sentence);
+			URL url = new URL(base_url+"?appid="+appid+"&sentence="+sentence.split("#")[0]);
 			//connection
 			HttpURLConnection httpCon = (HttpURLConnection)url.openConnection();
 			httpCon.setRequestMethod("GET");
