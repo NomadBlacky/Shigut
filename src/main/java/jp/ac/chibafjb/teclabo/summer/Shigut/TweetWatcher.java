@@ -10,16 +10,7 @@ import twitter4j.conf.ConfigurationBuilder;
 
 public class TweetWatcher {
 	public void Watcher() {
-
-	}
-
-	public static void main(String[] args) throws TwitterException {
-//		TweetWatcher watcher = new TweetWatcher();
-//		watcher.Watcher();
-
-
-
-
+		try {
 			// 認証キーを設定
 			ConfigurationBuilder builder = new ConfigurationBuilder();
 			builder.setOAuthConsumerKey("b85u4uPoSjmQGxpw8ecz0hkNV");
@@ -29,16 +20,29 @@ public class TweetWatcher {
 			Configuration conf = builder.build();
 			System.out.println("認証完了");
 
-			//初期化
+			// 初期化
 			Twitter twitter = new TwitterFactory(conf).getInstance();
 			Query query = new Query();
 			System.out.println("初期化完了");
-			//検索条件
+			// 検索条件
 			query.setQuery("バルス");
 			query.setCount(1);
 			System.out.println("条件完了");
 
 			QueryResult result = twitter.search(query);
+
 			System.out.println("ヒット数" + result.getTweets().size());
+
+		} catch (TwitterException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 	}
+
+	public static void main(String[] args) {
+		TweetWatcher watcher = new TweetWatcher();
+		watcher.Watcher();
+
+	}
+
 }
