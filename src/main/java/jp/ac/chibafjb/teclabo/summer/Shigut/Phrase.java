@@ -11,8 +11,8 @@ public class Phrase {
 	private String phrase;
 	private int score;
 
-	public Phrase(String user, String phrase, int score) {
-		this.user = user;
+	public Phrase(String userid, String phrase, int score) {
+		this.user = userid;
 		this.phrase = phrase;
 		this.score = score;
 	}
